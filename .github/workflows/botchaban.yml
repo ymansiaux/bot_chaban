@@ -1,9 +1,9 @@
 on:
   schedule:
-    - cron: '11 12 * * *'  # lance à 7h00 tous les jours
-  #push:  à decommenter si on veut lancer le deploiement à chaque push sur la branche master
-   # branches:
-    #  - master
+    - cron: '21 12 * * *'  # lance à 7h00 tous les jours
+  push:  
+    branches:
+    - master
 jobs:
   botchaban-post:
     runs-on: macOS-latest
