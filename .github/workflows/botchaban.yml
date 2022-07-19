@@ -4,7 +4,7 @@ on:
    # - cron: '14 9/8 * * *'  # trigger at 09:14 and 17:14 every day
   push:
     branches:
-      -master
+      - master
 jobs:
   botchaban-post:
     runs-on: macOS-latest
