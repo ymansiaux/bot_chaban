@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '51 12 * * *'  # lance à la même heure tous les jours
+    - cron: '55 12 * * *'  # lance à la même heure tous les jours
   #push:  
     #branches:
     #- master
