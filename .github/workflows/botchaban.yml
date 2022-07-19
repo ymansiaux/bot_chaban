@@ -4,7 +4,7 @@ on:
    # - cron: '14 9/8 * * *'  # trigger at 09:14 and 17:14 every day
   push:
     branches:
-      -master
+      - master
 jobs:
   botchaban-post:
     runs-on: macOS-latest
@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: "4.1.1"
       - name: Install rtweet package
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
       - name: Install glue package
@@ -33,7 +35,7 @@ jobs:
         run: Rscript -e 'install.packages("lubridate", dependencies = TRUE)'
       - name: Install devtools package
         run: Rscript -e 'install.packages("devtools", dependencies = TRUE)'
-      - name: Install devtools package
+      - name: Install emo package
         run: Rscript -e 'devtools::install_github("hadley/emo")'
       - name: Create and post tweet
         run: Rscript botchaban.R
