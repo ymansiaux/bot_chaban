@@ -12,10 +12,10 @@ library(emo)
 
 botChaban_token <- create_token(
   app = "botChaban",
-  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
-  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
-  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
-  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+  consumer_key =    Sys.getenv("BOT_CHABAN_TWITTER_CONSUMER_API_KEY"),
+  consumer_secret = Sys.getenv("BOT_CHABAN_TWITTER_CONSUMER_API_SECRET"),
+  access_token =    Sys.getenv("BOT_CHABAN_TWITTER_ACCESS_TOKEN"),
+  access_secret =   Sys.getenv("BOT_CHABAN_TWITTER_ACCESS_TOKEN_SECRET")
 )
 
 # vigilance il faut resupprimer à chaque fois /home/y.mansiaux/.rtweet_token.rds
@@ -35,10 +35,6 @@ chaban_data <- as_tibble(get_chaban_data) %>%
     date_reouverture < date_fermeture ~ add_with_rollback(date_reouverture, days(1)),
     TRUE ~ date_reouverture
   ))
-
-
-# date_test_ouvert <- as_datetime("2022-08-20T00:00:00")
-# date_test_ferme  <- as_datetime("2022-08-28T23:30:00")
 
 
 datetime_bridge <- Sys.time()
@@ -82,13 +78,17 @@ if(nrow(chaban_data) >0) {
 
   }
 
-  rtweet::post_tweet(
-    status = message,
-    token = botChaban_token
-  )
+} else {
+
+  message("Les données d'ouverture / fermeture du pont Chaban Delmas ne sont pas accessibles ce jour {emo::ji('sad')}.")
 
 }
 
+
+rtweet::post_tweet(
+  status = message,
+  token = botChaban_token
+)
 
 
 
