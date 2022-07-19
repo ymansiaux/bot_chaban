@@ -1,9 +1,9 @@
 on:
   schedule:
-    - cron: '0 14 * * *'  # lance à la même heure tous les jours
-  #push:  
+    - cron: '0 6 * * *'  # lance à 6h00 CET tous les jours
+  #push:  lancement manuel à chaque push
     #branches:
-    #- master
+    #- main
 jobs:
   botchaban-post:
     runs-on: macOS-latest
